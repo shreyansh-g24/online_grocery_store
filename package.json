@@ -2,6 +2,13 @@
   "name": "app",
   "private": true,
   "dependencies": {
+    "@babel/preset-react": "^7.23.3",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-on-rails": "13.4.0"
   },
   "version": "0.1.0",
   "babel": {
@@ -11,5 +18,9 @@
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
+    "react-refresh": "^0.14.0"
+  }
 }
