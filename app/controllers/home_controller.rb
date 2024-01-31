@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   layout "home"
 
   def index
-    @home_props = { name: "Stranger" }
+    render
   end
 end
