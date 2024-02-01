@@ -7,15 +7,19 @@ const Login = () => {
     <div>
       <h1>Login</h1>
       <form>
-        <input type="text" />
-        <input type="text" />
+        <label>
+          Email: <input type="text" />
+        </label>
+        <label>
+          Password: <input type="text" />
+        </label>
         <input type="submit" />
       </form>
 
       <Link to={routes.signup}>Signup</Link>
       <Link to={routes.adminLogin}>Login as an Admin</Link>
     </div>
-  )
-}
+  );
+};
 
 export default Login;
