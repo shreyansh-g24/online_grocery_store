@@ -37,4 +37,8 @@ class Api::V1::BaseController < ApplicationController
   def get_jwt_header_value
     request.get_header("HTTP_AUTHORIZATION")
   end
+
+  def create_token(payload)
+    JWT.encode(payload, jwt_secret, algorithm)
+  end
 end

@@ -33,7 +33,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
 
   def login_customer
     uuid = update_customer_jti
-    payload = { jti: uuid, id: @customer.id }
+    payload = { jti: uuid, id: @customer.id, login_at: Time.zone.now.to_i }
     token = create_token(payload)
     response.set_header("authorization", token)
   end
@@ -42,9 +42,5 @@ class Api::V1::SessionsController < Api::V1::BaseController
     uuid = Customer.generate_unique_uuid
     @customer.update! jti: uuid
     uuid
-  end
-
-  def create_token(payload)
-    JWT.encode(payload, jwt_secret, algorithm)
   end
 end
