@@ -1,5 +1,6 @@
 const BASE_API_V1_URL = "/api/v1"
 const BASE_CUSTOMER_URL = `${BASE_API_V1_URL}/customers`
+const BASE_ADMIN_URL = `${BASE_API_V1_URL}/admin`
 
 export const SESSIONS = {
   create: {
@@ -30,5 +31,16 @@ export const ADDRESSES = {
   index: {
     url: `${BASE_CUSTOMER_URL}/addresses`,
     method: "GET"
+  }
+}
+
+export const ADMIN_SESSIONS = {
+  create: {
+    url: `${BASE_ADMIN_URL}/sessions`,
+    method: "POST"
+  },
+  delete: {
+    url: `${BASE_ADMIN_URL}/sessions`,
+    method: "DELETE"
   }
 }

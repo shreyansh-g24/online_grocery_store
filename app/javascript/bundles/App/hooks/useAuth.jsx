@@ -13,12 +13,13 @@ export const AuthProvider = ({ children }) => {
   const login = (userType, token) => {
     setLoggedInUserType(userType);
     saveUserToLocalStorage(token, userType);
+    window.location.replace(routes.root)
   };
 
   const logout = () => {
     setLoggedInUserType(USER_TYPES.none)
     clearLocalStorage()
-    window.location.replace("/")
+    window.location.replace(routes.root)
   };
 
   const value = useMemo(

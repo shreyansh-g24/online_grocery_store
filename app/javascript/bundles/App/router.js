@@ -9,6 +9,8 @@ import { USER_TYPES } from "./constants";
 import ErrorPage from "./components/ErrorPage";
 import AddressesIndex from "./components/Addresses";
 import CustomerLayout from "./components/Customer/Layout";
+import AdminDashboard from "./components/Admin/Dashboard";
+import AdminLayout from "./components/Admin/Layout";
 
 const getRouter = (loggedInUserType) => {
   let filteredRoutes = []
@@ -55,7 +57,12 @@ const authenticatedCustomerRoutes = [
   }
 ]
 
-const authenticatedAdminRoutes = []
+const authenticatedAdminRoutes = [
+  {
+    path: routes.adminDashboard,
+    element: <AdminLayout><AdminDashboard /></AdminLayout>
+  }
+]
 
 const fallbackRoutes = [
   {

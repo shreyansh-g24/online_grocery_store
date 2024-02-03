@@ -4,7 +4,9 @@ const routes = {
   adminLogin: "/admin-login",
 
   customersDashboard: "/",
-  customersAddresses: "/addresses"
+  customersAddresses: "/addresses",
+
+  adminDashboard: "/",
 }
 
 export default routes;
