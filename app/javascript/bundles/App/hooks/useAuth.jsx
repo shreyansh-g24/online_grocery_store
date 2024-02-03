@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useMemo, useState } from "react";
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider, useNavigate } from "react-router-dom";
 import { clearLocalStorage, getUserTypeLocalStorage, saveUserToLocalStorage } from "../utils";
 import getRouter from "../router";
 import { USER_TYPES } from "../constants";
+import routes from "../routes";
 
 export const AuthContext = createContext();
 
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setLoggedInUserType(USER_TYPES.none)
     clearLocalStorage()
+    window.location.replace("/")
   };
 
   const value = useMemo(
