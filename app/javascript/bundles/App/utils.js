@@ -1,8 +1,10 @@
 import { toast } from "react-toastify"
 import { USER_AUTH_TOKEN, USER_AUTH_TYPE } from "./constants"
 
+const getHeaders = () => ({ "Content-Type": "application/json", "Accept": "application/json", "Authorization": getTokenFromLocalStorage() })
+
 export const fetchApi = (urlObj, body) => {
-  return fetch(urlObj.url, { method: urlObj.method, body: JSON.stringify(body), headers: { "Content-Type": "application/json", "Accept": "application/json" } })
+  return fetch(urlObj.url, { method: urlObj.method, body: JSON.stringify(body), headers: getHeaders() })
     .then(response => response.json().then(res => ({ ...res, headers: response.headers })))
     .then(response => {
       if (response.message) {

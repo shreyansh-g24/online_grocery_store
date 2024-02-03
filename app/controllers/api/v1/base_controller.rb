@@ -10,7 +10,13 @@ class Api::V1::BaseController < ApplicationController
 
   def decode_token
     token = get_jwt_header_value
-    @auth_payload = JWT.decode(token, jwt_secret)[0]
+
+    @auth_payload = if token.present?
+                      JWT.decode(token, jwt_secret)[0]
+                    else
+                      respond_with_json({ errors: ["Auth token not found"] }, :unauthorized)
+                      nil
+                    end
   end
 
   def jwt_secret
