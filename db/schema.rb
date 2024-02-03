@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_084727) do
 
   create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "customer_id", null: false
+    t.string "label", null: false
     t.text "full_address", null: false
     t.string "contact"
     t.datetime "created_at", null: false

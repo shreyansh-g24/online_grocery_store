@@ -11,6 +11,7 @@ class AddTables < ActiveRecord::Migration[7.1]
 
     create_table :addresses, id: :uuid do |t|
       t.belongs_to :customer, null: false, index: true, foreign_key: true, type: :uuid
+      t.string :label, null: false
       t.text :full_address, null: false
       t.string :contact, null: :false
 

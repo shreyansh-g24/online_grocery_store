@@ -31,7 +31,15 @@ export const ADDRESSES = {
   index: {
     url: `${BASE_CUSTOMER_URL}/addresses`,
     method: "GET"
-  }
+  },
+  create: {
+    url: `${BASE_CUSTOMER_URL}/addresses`,
+    method: "POST"
+  },
+  update: (id) => ({
+    url: `${BASE_CUSTOMER_URL}/addresses/${id}`,
+    method: "PUT"
+  })
 }
 
 export const ADMIN_SESSIONS = {

@@ -3,6 +3,8 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable, :omniauthable, :recoverable, :rememberable
   devise :database_authenticatable, :registerable, :validatable
 
+  has_many :addresses
+
   validates_presence_of :email, :encrypted_password
   validates_uniqueness_of :email
 
