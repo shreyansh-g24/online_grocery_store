@@ -11,6 +11,7 @@ namespace :api do
     namespace :admin do
       resources :sessions, only: :create
       delete "/sessions", to: "sessions#destroy"
+      resources :groceries, only: [:create, :update]
       resources :orders, only: :index
     end
   end

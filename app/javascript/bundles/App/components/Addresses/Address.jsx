@@ -8,7 +8,7 @@ const Address = ({ address, handleEdit }) => {
       <div>{address.contact}</div>
       <button onClick={handleEdit}>Edit</button>
     </div>
-  )
-}
+  );
+};
 
 export default Address;

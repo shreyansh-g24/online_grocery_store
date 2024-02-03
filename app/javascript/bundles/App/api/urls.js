@@ -24,7 +24,15 @@ export const GROCERIES = {
   index: {
     url: `${BASE_API_V1_URL}/groceries`,
     method: "GET"
-  }
+  },
+  create: {
+    url: `${BASE_ADMIN_URL}/groceries`,
+    method: "POST"
+  },
+  update: (id) => ({
+    url: `${BASE_ADMIN_URL}/groceries/${id}`,
+    method: "PUT"
+  })
 };
 
 export const ADDRESSES = {

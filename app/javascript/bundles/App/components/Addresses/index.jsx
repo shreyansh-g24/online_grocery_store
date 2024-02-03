@@ -59,6 +59,7 @@ const AddressesIndex = () => {
       {addresses.map((address) => {
         return (
           <Address
+            key={address.id}
             address={address}
             handleEdit={() => handleEditAddress(address)}
           />
