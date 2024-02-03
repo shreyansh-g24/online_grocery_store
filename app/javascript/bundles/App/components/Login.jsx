@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import routes from "../routes";
+import { sessionsCreate } from "../api/sessions";
+import { saveToken } from "../utils";
 
 const Login = () => {
+  const formRef = useRef();
+  
+  const handleLogin = () => {
+    const formData = new FormData(formRef.current);
+    const data = { customer: Object.fromEntries(formData.entries()) };
+    sessionsCreate(data)
+      .then((response) => {
+        const token = response.headers.get("Authorization")
+        saveToken(token);
+      })
+      .catch(() => undefined)
+  }
+
   return (
     <div>
       <h1>Login</h1>
-      <form>
+      <form ref={formRef}>
         <label>
-          Email: <input type="text" />
+          Email: <input name="email" type="text" />
         </label>
         <label>
-          Password: <input type="text" />
+          Password: <input name="password" type="text" />
         </label>
-        <input type="submit" />
+        <button type="button" onClick={handleLogin}>Login</button>
       </form>
 
       <Link to={routes.signup}>Signup</Link>
