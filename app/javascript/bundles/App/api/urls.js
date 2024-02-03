@@ -5,6 +5,10 @@ export const SESSIONS = {
   create: {
     url: `${BASE_CUSTOMER_URL}/sessions`,
     method: "POST"
+  },
+  delete: {
+    url: `${BASE_CUSTOMER_URL}/sessions`,
+    method: "DELETE"
   }
 };
 

@@ -2,12 +2,15 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import routes from "../../routes";
 import { AuthContext } from "../../hooks/useAuth";
+import { sessionsDestroy } from "../../api/sessions";
 
 const CustomerNavbar = () => {
   const context = useContext(AuthContext)
 
   const handleLogout = () => {
-    context.logout()
+    sessionsDestroy()
+      .then(() => context.logout())
+      .catch(() => 0)
   }
 
   return (
