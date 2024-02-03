@@ -1,4 +1,1 @@
-.bright {
-    color: green;
-    font-weight: bold;
-}
+@import 'react-toastify/dist/ReactToastify.min.css';
