@@ -7,6 +7,8 @@ import routes from "./routes";
 import CustomerDashboard from "./components/Customer/Dashboard";
 import { USER_TYPES } from "./constants";
 import ErrorPage from "./components/ErrorPage";
+import AddressesIndex from "./components/Addresses";
+import CustomerLayout from "./components/Customer/Layout";
 
 const getRouter = (loggedInUserType) => {
   let filteredRoutes = []
@@ -45,7 +47,11 @@ const unauthenticatedRoutes = [
 const authenticatedCustomerRoutes = [
   {
     path: routes.customersDashboard,
-    element: <CustomerDashboard />
+    element: <CustomerLayout><CustomerDashboard /></CustomerLayout>
+  },
+  {
+    path: routes.customersAddresses,
+    element: <CustomerLayout><AddressesIndex /></CustomerLayout>
   }
 ]
 

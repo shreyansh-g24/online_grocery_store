@@ -5,6 +5,7 @@ namespace :api do
     namespace :customers do
       post "/sessions", to: "sessions#create"
       delete "/sessions", to: "sessions#destroy"
+      resources :addresses, only: :index
     end
 
     namespace :admin do

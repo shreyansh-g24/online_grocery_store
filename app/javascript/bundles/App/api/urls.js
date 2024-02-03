@@ -21,3 +21,10 @@ export const GROCERIES = {
     method: "GET"
   }
 };
+
+export const ADDRESSES = {
+  index: {
+    url: `${BASE_CUSTOMER_URL}/addresses`,
+    method: "GET"
+  }
+}
