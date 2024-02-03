@@ -1,8 +1,9 @@
-const BASE_API_V1 = "/api/v1"
+const BASE_API_V1_URL = "/api/v1"
+const BASE_CUSTOMER_URL = `${BASE_API_V1_URL}/customers`
 
 export const SESSIONS = {
   create: {
-    url: `${BASE_API_V1}/sessions`,
+    url: `${BASE_CUSTOMER_URL}/sessions`,
     method: "POST"
   }
 };
@@ -16,7 +17,7 @@ export const REGISTRATIONS = {
 
 export const GROCERIES = {
   index: {
-    url: `${BASE_API_V1}/groceries`,
+    url: `${BASE_API_V1_URL}/groceries`,
     method: "GET"
   }
 };

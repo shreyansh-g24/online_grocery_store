@@ -1,8 +1,11 @@
 namespace :api do
   namespace :v1 do
     resources :groceries, only: :index
-    post "/sessions", to: "sessions#create"
-    delete "/sessions", to: "sessions#destroy"
+
+    namespace :customers do
+      post "/sessions", to: "sessions#create"
+      delete "/sessions", to: "sessions#destroy"
+    end
 
     namespace :admin do
       resources :sessions, only: :create
