@@ -1,30 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { RouterProvider } from "react-router-dom";
+import React from "react";
 
 import "./App.module.css";
 import { ToastContainer } from "react-toastify";
-import { USER_TYPES } from "../constants";
-import getRouter from "../router";
+import { AuthProvider } from "../hooks/useAuth";
 
 const App = () => {
-  const [loggedInUserType, setLoggedInUserType] = useState(USER_TYPES.none);
-
-  const login = (userType) => {
-    setLoggedInUserType(userType);
-  }
-
-  const logout = () => setLoggedInUserType(USER_TYPES.none);
-
-  window.setLoggedInUserType = setLoggedInUserType
-  window.loggedInUserType = loggedInUserType
-
-  // const router = useEffect(() => getRouter(loggedInUserType), [loggedInUserType])
-
   return (
-    <div>
-      <RouterProvider router={getRouter(loggedInUserType)} />
+    <AuthProvider>
       <ToastContainer position="bottom-left" />
-    </div>
+    </AuthProvider>
   );
 };
 

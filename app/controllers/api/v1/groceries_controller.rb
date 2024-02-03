@@ -1,5 +1,7 @@
 class Api::V1::GroceriesController < Api::V1::BaseController
+  skip_before_action :authenticate_user!
+
   def index
-    respond_with_json({ current_customer: current_customer.as_json }, :ok)
+    respond_with_json({ groceries: [] }, :ok)
   end
 end

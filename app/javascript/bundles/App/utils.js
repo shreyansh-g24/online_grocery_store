@@ -1,5 +1,5 @@
 import { toast } from "react-toastify"
-import { USER_AUTH_TOKEN } from "./constants"
+import { USER_AUTH_TOKEN, USER_AUTH_TYPE } from "./constants"
 
 export const fetchApi = (urlObj, body) => {
   return fetch(urlObj.url, { method: urlObj.method, body: JSON.stringify(body), headers: { "Content-Type": "application/json", "Accept": "application/json" } })
@@ -26,10 +26,19 @@ export const fetchApi = (urlObj, body) => {
     })
 }
 
-export const saveToken = (token) => {
+export const saveUserToLocalStorage = (token, type) => {
   localStorage.setItem(USER_AUTH_TOKEN, token);
+  localStorage.setItem(USER_AUTH_TYPE, type);
 }
 
-export const getToken = () => {
+export const getTokenFromLocalStorage = () => {
   return localStorage.getItem(USER_AUTH_TOKEN);
+}
+
+export const getUserTypeLocalStorage = () => {
+  return localStorage.getItem(USER_AUTH_TYPE)
+}
+
+export const clearLocalStorage = () => {
+  localStorage.clear();
 }

@@ -1,10 +1,12 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import routes from "../routes";
 import { sessionsCreate } from "../api/sessions";
-import { saveToken } from "../utils";
+import { AuthContext } from "../hooks/useAuth";
+import { USER_TYPES } from "../constants";
 
 const Login = () => {
+  const context = useContext(AuthContext);
   const formRef = useRef();
   
   const handleLogin = () => {
@@ -12,8 +14,8 @@ const Login = () => {
     const data = { customer: Object.fromEntries(formData.entries()) };
     sessionsCreate(data)
       .then((response) => {
-        const token = response.headers.get("Authorization")
-        saveToken(token);
+        const token = response.headers.get("Authorization");
+        context.login(USER_TYPES.customer, token);
       })
       .catch(() => undefined)
   }
