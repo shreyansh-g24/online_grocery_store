@@ -39,6 +39,6 @@ class CustomerTest < ActiveSupport::TestCase
 
     customer2 = Customer.new(email: "sam@example.com")
     assert_not customer2.valid?
-    assert_includes customer2.errors.full_messages, ["Email must be unique"]
+    assert_includes customer2.errors.full_messages, "Email has already been taken"
   end
 end
