@@ -70,6 +70,10 @@ export const CUSTOMER_ORDERS = {
     url: `${BASE_CUSTOMER_URL}/orders`,
     method: "POST"
   },
+  show: (id) => ({
+    url: `${BASE_CUSTOMER_URL}/orders/${id}`,
+    method: "GET"
+  }),
   update: (id) => ({
     url: `${BASE_CUSTOMER_URL}/order/${id}`,
     method: "PUT"

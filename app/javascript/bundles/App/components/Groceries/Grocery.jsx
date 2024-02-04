@@ -21,7 +21,7 @@ const Grocery = ({ grocery, handleEdit, onAddToCart }) => {
       </div>
       {grocery.is_out_of_stock ? <div>Out of stock</div> : null}
       {isAdmin ? <button onClick={handleEdit}>Edit</button> : null}
-      {isCustomer ? <button onClick={handleAddToCart}>Add to cart</button> : null}
+      {isCustomer && !grocery.is_out_of_stock ? <button onClick={handleAddToCart}>Add to cart</button> : null}
     </div>
   );
 };

@@ -6,7 +6,7 @@ namespace :api do
       post "/sessions", to: "sessions#create"
       delete "/sessions", to: "sessions#destroy"
       resources :addresses, only: [:index, :create, :update]
-      resources :orders, only: [:index, :create, :update]
+      resources :orders, only: [:index, :create, :show, :update]
       resources :groceries_orders, only: [:create, :update, :destroy]
     end
 

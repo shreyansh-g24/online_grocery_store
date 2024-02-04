@@ -9,9 +9,9 @@ class Order < ApplicationRecord
 
   enum status: { in_cart: "in_cart", placed: "placed", delivered: "delivered", canceled: "canceled", rejected: "rejected" }
 
-  def as_json(options)
+  def as_json(_options)
     super({
       include: { groceries_orders: { include: :grocery } }
-    }).merge(options)
+    })
   end
 end
