@@ -12,15 +12,22 @@ const OrdersShow = ({ orderProps }) => {
   const { orderId } = useParams();
   const [order, setOrder] = useState(orderProps);
   const [statuses, setStatuses] = useState([]);
+  const [addresses, setAddresses] = useState([]);
 
   const statusOptions = useMemo(() => {
     let formattedStatuses = statuses.map((status) => ({
       id: status,
-      value: status
+      value: status,
     }));
 
     return formattedStatuses;
-  }, [statuses, order]);
+  }, [statuses]);
+
+  const addressOptions = useMemo(() => {
+    return [{ id: "", value: "Select", options: { disabled: true } }].concat(
+      addresses.map((add) => ({ id: add.id, value: add.label }))
+    );
+  }, [addresses]);
 
   useEffect(() => {
     if (orderProps) {
@@ -41,6 +48,7 @@ const OrdersShow = ({ orderProps }) => {
       .then((response) => {
         setOrder(response.order);
         setStatuses(response.statuses);
+        setAddresses(response.addresses);
       })
       .catch(() => 0);
   }, [order]);
@@ -54,6 +62,11 @@ const OrdersShow = ({ orderProps }) => {
   const handleStatusUpdate = (event) => {
     const status = event.target.value;
     updateOrder({ status });
+  };
+
+  const handleAddressUpdate = (event) => {
+    const addressId = event.target.value;
+    updateOrder({ address_id: addressId });
   };
 
   const calculateTotalOrderPrice = () => {
@@ -83,8 +96,17 @@ const OrdersShow = ({ orderProps }) => {
           ))
         : "Loading"}
 
+      <Select
+        defaultValue={order.address_id || ""}
+        options={addressOptions}
+        onChange={handleAddressUpdate}
+      />
       {order.address ? <Address address={order.address} /> : null}
-      <Select defaultValue={order.status} options={statusOptions} onChange={handleStatusUpdate} />
+      <Select
+        defaultValue={order.status}
+        options={statusOptions}
+        onChange={handleStatusUpdate}
+      />
       <div>Total price: {calculateTotalOrderPrice()}</div>
     </div>
   );
