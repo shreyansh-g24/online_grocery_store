@@ -12,6 +12,11 @@ const routes = {
   },
 
   adminDashboard: "/",
+  adminOrders: "/orders",
+  adminOrder: {
+    routeHelper: (id) => `/orders/${id}`,
+    route: "/orders/:orderId"
+  }
 }
 
 export default routes;

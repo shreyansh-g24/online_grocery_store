@@ -15,6 +15,7 @@ const AdminNavbar = () => {
   return (
     <div>
       <Link to={routes.adminDashboard}>Groceries</Link>
+      <Link to={routes.adminOrders}>Orders</Link>
       <button type="button" onClick={handleLogout}>
         Logout
       </button>

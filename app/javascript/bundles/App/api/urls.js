@@ -61,6 +61,21 @@ export const ADMIN_SESSIONS = {
   }
 }
 
+export const ADMIN_ORDERS = {
+  index: {
+    url: `${BASE_ADMIN_URL}/orders`,
+    method: "GET"
+  },
+  show: (id) => ({
+    url: `${BASE_ADMIN_URL}/orders/${id}`,
+    method: "GET"
+  }),
+  update: (id) => ({
+    url: `${BASE_ADMIN_URL}/orders/${id}`,
+    method: "PUT"
+  })
+}
+
 export const CUSTOMER_ORDERS = {
   index: {
     url: `${BASE_CUSTOMER_URL}/orders`,

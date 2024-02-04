@@ -12,6 +12,7 @@ import { AuthContext } from "../../hooks/useAuth";
 import { USER_TYPES } from "../../constants";
 import GroceriesCart from "./Cart";
 import { createCustomerOrder } from "../../api/customerOrders";
+import { toast } from "react-toastify";
 
 const GroceriesIndex = () => {
   const context = useContext(AuthContext);
@@ -40,7 +41,9 @@ const GroceriesIndex = () => {
   }, []);
 
   useEffect(() => {
-    fetchCart();
+    if (isCustomer) {
+      fetchCart();
+    }
   }, []);
 
   const fetchCart = useCallback(() => {

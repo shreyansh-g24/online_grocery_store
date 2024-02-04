@@ -13,6 +13,7 @@ import AdminDashboard from "./components/Admin/Dashboard";
 import AdminLayout from "./components/Admin/Layout";
 import OrdersIndex from "./components/Orders";
 import OrdersShow from "./components/Orders/show";
+import AdminOrdersIndex from "./components/AdminOrders";
 
 const getRouter = (loggedInUserType) => {
   let filteredRoutes = []
@@ -71,6 +72,14 @@ const authenticatedAdminRoutes = [
   {
     path: routes.adminDashboard,
     element: <AdminLayout><AdminDashboard /></AdminLayout>
+  },
+  {
+    path: routes.adminOrders,
+    element: <AdminLayout><AdminOrdersIndex /></AdminLayout>
+  },
+  {
+    path: routes.adminOrder.route,
+    element: <AdminLayout><OrdersShow /></AdminLayout>
   }
 ]
 

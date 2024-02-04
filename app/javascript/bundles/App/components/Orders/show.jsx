@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import GroceryOrderItem from "./GroceryOrderItem";
 import {
   fetchCustomerOrder,
@@ -7,8 +13,13 @@ import {
 import Address from "../Addresses/Address";
 import { useParams } from "react-router-dom";
 import Select from "../Utils/Select";
+import { AuthContext } from "../../hooks/useAuth";
+import { USER_TYPES } from "../../constants";
+import { fetchAdminOrder, updateAdminOrder } from "../../api/adminOrders";
 
 const OrdersShow = ({ orderProps, statusesProps, addressesProps }) => {
+  const context = useContext(AuthContext);
+
   const { orderId } = useParams();
   const [order, setOrder] = useState(orderProps);
   const [statuses, setStatuses] = useState(statusesProps || []);
@@ -18,7 +29,7 @@ const OrdersShow = ({ orderProps, statusesProps, addressesProps }) => {
     let formattedStatuses = statuses.map((status) => ({
       id: status,
       value: status,
-      options: { disabled: status === "in_cart" }
+      options: { disabled: status === "in_cart" },
     }));
 
     return formattedStatuses;
@@ -54,17 +65,26 @@ const OrdersShow = ({ orderProps, statusesProps, addressesProps }) => {
       return;
     }
 
-    fetchCustomerOrder(order ? order.id : orderId)
+    const fetchFn =
+      context.loggedInUserType === USER_TYPES.admin
+        ? fetchAdminOrder
+        : fetchCustomerOrder;
+
+    fetchFn(order ? order.id : orderId)
       .then((response) => {
         setOrder(response.order);
         setStatuses(response.statuses);
-        setAddresses(response.addresses);
+        setAddresses(response.addresses || []);
       })
       .catch(() => 0);
   }, [order]);
 
   const updateOrder = (data) => {
-    updateCustomerOrder(order.id, { order: data })
+    const updateFn =
+      context.loggedInUserType === USER_TYPES.admin
+        ? updateAdminOrder
+        : updateCustomerOrder;
+    updateFn(order.id, { order: data })
       .then(fetchOrder)
       .catch(() => 0);
   };
@@ -101,16 +121,18 @@ const OrdersShow = ({ orderProps, statusesProps, addressesProps }) => {
               key={groceryOrder.id}
               groceryOrder={groceryOrder}
               onUpdateCallback={fetchOrder}
-              isEditable={order.status === "in_cart"}
+              isEditable={order.status === "in_cart" && context.loggedInUserType === USER_TYPES.customer}
             />
           ))
         : "Loading"}
 
-      <Select
-        defaultValue={order.address_id || ""}
-        options={addressOptions}
-        onChange={handleAddressUpdate}
-      />
+      {context.loggedInUserType === USER_TYPES.customer ? (
+        <Select
+          defaultValue={order.address_id || ""}
+          options={addressOptions}
+          onChange={handleAddressUpdate}
+        />
+      ) : null}
       {order.address ? <Address address={order.address} /> : null}
       <Select
         defaultValue={order.status}
