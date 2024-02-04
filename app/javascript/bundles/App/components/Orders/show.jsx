@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import GroceryOrderItem from "./GroceryOrderItem";
 import { fetchCustomerOrder } from "../../api/customerOrders";
-import { toast } from "react-toastify";
+import Address from "../Addresses/Address";
 
 const OrdersShow = ({ orderProps }) => {
   const [order, setOrder] = useState(orderProps);
@@ -11,12 +11,26 @@ const OrdersShow = ({ orderProps }) => {
   }, [orderProps]);
 
   const fetchOrder = useCallback(() => {
-    fetchCustomerOrder(orderProps.id)
+    if (!order) {
+      return;
+    }
+
+    fetchCustomerOrder(order.id)
       .then((response) => setOrder(response.order))
-      .catch(() =>
-        toast.error("Something went wrong. Please contact support.")
+      .catch(() => 0);
+  }, [order]);
+
+  const calculateTotalOrderPrice = () => {
+    if (!order || !order.groceries_orders) {
+      return 0;
+    }
+
+    return order.groceries_orders.reduce((acc, grocery_order) => {
+      return (
+        acc + grocery_order.quantity * grocery_order.grocery.price_per_unit
       );
-  }, []);
+    }, 0);
+  };
 
   return (
     <div>
@@ -29,6 +43,10 @@ const OrdersShow = ({ orderProps }) => {
             />
           ))
         : "Loading"}
+
+      {order.address ? <Address address={order.address} /> : null}
+      <div>{order.status}</div>
+      <div>Total price: {calculateTotalOrderPrice()}</div>
     </div>
   );
 };

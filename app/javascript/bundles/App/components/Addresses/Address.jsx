@@ -6,7 +6,7 @@ const Address = ({ address, handleEdit }) => {
       <div>{address.label}</div>
       <div>{address.full_address}</div>
       <div>{address.contact}</div>
-      <button onClick={handleEdit}>Edit</button>
+      {handleEdit ? <button onClick={handleEdit}>Edit</button> : null}
     </div>
   );
 };

@@ -11,7 +11,7 @@ class Order < ApplicationRecord
 
   def as_json(_options)
     super({
-      include: { groceries_orders: { include: :grocery } }
+      include: [:address, { groceries_orders: { include: :grocery } }]
     })
   end
 end
