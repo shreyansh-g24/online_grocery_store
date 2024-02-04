@@ -5,21 +5,22 @@ import { AuthContext } from "../../hooks/useAuth";
 import { sessionsDestroy } from "../../api/sessions";
 
 const CustomerNavbar = () => {
-  const context = useContext(AuthContext)
+  const context = useContext(AuthContext);
 
   const handleLogout = () => {
-    sessionsDestroy()
-      .then(() => context.logout())
-      .catch(() => 0)
-  }
+    context.logout();
+    sessionsDestroy();
+  };
 
   return (
     <div>
       <Link to={routes.customersDashboard}>Groceries</Link>
       <Link to={routes.customersAddresses}>Addresses</Link>
-      <button type="button" onClick={handleLogout}>Logout</button>
+      <button type="button" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
-  )
-}
+  );
+};
 
 export default CustomerNavbar;
