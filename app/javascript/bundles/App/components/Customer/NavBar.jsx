@@ -16,6 +16,7 @@ const CustomerNavbar = () => {
     <div>
       <Link to={routes.customersDashboard}>Groceries</Link>
       <Link to={routes.customersAddresses}>Addresses</Link>
+      <Link to={""}>Orders</Link>
       <button type="button" onClick={handleLogout}>
         Logout
       </button>

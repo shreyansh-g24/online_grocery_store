@@ -4,6 +4,7 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable
 
   has_many :addresses
+  has_many :orders
 
   validates_presence_of :email, :encrypted_password
   validates_uniqueness_of :email

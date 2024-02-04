@@ -56,15 +56,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_084727) do
   end
 
   create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "address_id", null: false
+    t.uuid "address_id"
+    t.uuid "customer_id", null: false
     t.string "status", default: "in_cart", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   add_foreign_key "addresses", "customers"
   add_foreign_key "groceries_orders", "groceries"
   add_foreign_key "groceries_orders", "orders"
   add_foreign_key "orders", "addresses"
+  add_foreign_key "orders", "customers"
 end

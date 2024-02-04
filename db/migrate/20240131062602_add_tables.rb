@@ -19,7 +19,8 @@ class AddTables < ActiveRecord::Migration[7.1]
     end
 
     create_table :orders, id: :uuid do |t|
-      t.belongs_to :address, null: false, index: true, foreign_key: true, type: :uuid
+      t.belongs_to :address, index: true, foreign_key: true, type: :uuid
+      t.belongs_to :customer, null: false, index: true, foreign_key: true, type: :uuid
       t.string :status, null: false, default: "in_cart"
 
       t.timestamps

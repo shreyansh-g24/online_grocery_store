@@ -60,3 +60,37 @@ export const ADMIN_SESSIONS = {
     method: "DELETE"
   }
 }
+
+export const CUSTOMER_ORDERS = {
+  index: {
+    url: `${BASE_CUSTOMER_URL}/orders`,
+    method: "GET"
+  },
+  create: {
+    url: `${BASE_CUSTOMER_URL}/orders`,
+    method: "POST"
+  },
+  update: (id) => ({
+    url: `${BASE_CUSTOMER_URL}/order/${id}`,
+    method: "PUT"
+  })
+}
+
+export const GROCERIES_ORDERS = {
+  create: ({
+    url: `${BASE_CUSTOMER_URL}/groceries_orders`,
+    method: "POST"
+  }),
+  update: (id) => {
+    return {
+      url: `${BASE_CUSTOMER_URL}/groceries_orders/${id}`,
+      method: "PUT"
+    }
+  },
+  delete: (id) => {
+    return {
+      url: `${BASE_CUSTOMER_URL}/groceries_orders/${id}`,
+      method: "DELETE"
+    }
+  }
+}
