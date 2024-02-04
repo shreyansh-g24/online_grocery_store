@@ -75,7 +75,7 @@ export const CUSTOMER_ORDERS = {
     method: "GET"
   }),
   update: (id) => ({
-    url: `${BASE_CUSTOMER_URL}/order/${id}`,
+    url: `${BASE_CUSTOMER_URL}/orders/${id}`,
     method: "PUT"
   })
 }

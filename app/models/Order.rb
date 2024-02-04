@@ -1,4 +1,7 @@
 class Order < ApplicationRecord
+  CUSTOMERS_STATUSES = %w[in_cart placed canceled]
+  ADMIN_STATUSES = %w[placed delivered rejected]
+
   belongs_to :address, optional: true
   belongs_to :customer
   has_many :groceries_orders

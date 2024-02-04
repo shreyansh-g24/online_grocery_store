@@ -6,13 +6,13 @@ class Api::V1::Customers::OrdersController < Api::V1::Customers::BaseController
 
   def create
     order = current_customer.orders.find_or_create_by(status: Order.statuses[:in_cart])
-    respond_with_json({ order: order }, :ok)
+    respond_with_json({ order: order, statuses: Order::CUSTOMERS_STATUSES }, :ok)
   end
 
   def show
     order = current_customer.orders.find_by(id: params[:id])
     if order.present?
-      respond_with_json({ order: order }, :ok)
+      respond_with_json({ order: order, statuses: Order::CUSTOMERS_STATUSES }, :ok)
     else
       respond_with_json({ errors: ["Order not found"] }, :not_found)
     end

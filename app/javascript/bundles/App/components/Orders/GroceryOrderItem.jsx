@@ -1,7 +1,10 @@
 import React from "react";
-import { destroyGroceriesOrder, updateGroceriesOrder } from "../../api/groceriesOrders";
+import {
+  destroyGroceriesOrder,
+  updateGroceriesOrder,
+} from "../../api/groceriesOrders";
 
-const GroceryOrderItem = ({ groceryOrder, onUpdateCallback }) => {
+const GroceryOrderItem = ({ groceryOrder, onUpdateCallback, isEditable }) => {
   const updateQuantity = (quantity) => {
     updateGroceriesOrder(groceryOrder.id, { groceries_order: { quantity } })
       .then((response) => onUpdateCallback())
@@ -18,9 +21,9 @@ const GroceryOrderItem = ({ groceryOrder, onUpdateCallback }) => {
 
   const handleItemRemove = () => {
     destroyGroceriesOrder(groceryOrder.id)
-      .then(response => onUpdateCallback())
-      .catch(() => 0)
-  }
+      .then((response) => onUpdateCallback())
+      .catch(() => 0);
+  };
 
   return (
     <div>
@@ -29,18 +32,19 @@ const GroceryOrderItem = ({ groceryOrder, onUpdateCallback }) => {
         {groceryOrder.grocery.is_out_of_stock ? "Out of stock" : "Available"}
       </div>
       <div>
-        Price: Rs.{" "}
-        {groceryOrder.grocery.price_per_unit * groceryOrder.quantity}
+        Price: Rs. {groceryOrder.grocery.price_per_unit * groceryOrder.quantity}
       </div>
       <div>
-        <button onClick={decrementQuantity}>-</button>
-        <div>{groceryOrder.quantity}</div>
-        <button onClick={incrementQuantity}>+</button>
+        {isEditable ? <button onClick={decrementQuantity}>-</button> : null}
+        <div>
+          {groceryOrder.quantity} {groceryOrder.grocery.unit}
+        </div>
+        {isEditable ? <button onClick={incrementQuantity}>+</button> : null}
       </div>
 
-      <button onClick={handleItemRemove}>
-        Remove from cart
-      </button>
+      {isEditable ? (
+        <button onClick={handleItemRemove}>Remove from cart</button>
+      ) : null}
     </div>
   );
 };

@@ -1,12 +1,26 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import GroceryOrderItem from "./GroceryOrderItem";
-import { fetchCustomerOrder } from "../../api/customerOrders";
+import {
+  fetchCustomerOrder,
+  updateCustomerOrder,
+} from "../../api/customerOrders";
 import Address from "../Addresses/Address";
 import { useParams } from "react-router-dom";
+import Select from "../Utils/Select";
 
 const OrdersShow = ({ orderProps }) => {
   const { orderId } = useParams();
   const [order, setOrder] = useState(orderProps);
+  const [statuses, setStatuses] = useState([]);
+
+  const statusOptions = useMemo(() => {
+    let formattedStatuses = statuses.map((status) => ({
+      id: status,
+      value: status
+    }));
+
+    return formattedStatuses;
+  }, [statuses, order]);
 
   useEffect(() => {
     if (orderProps) {
@@ -14,7 +28,7 @@ const OrdersShow = ({ orderProps }) => {
     }
 
     if (orderId) {
-      fetchOrder()
+      fetchOrder();
     }
   }, [orderProps, orderId]);
 
@@ -24,9 +38,23 @@ const OrdersShow = ({ orderProps }) => {
     }
 
     fetchCustomerOrder(order ? order.id : orderId)
-      .then((response) => setOrder(response.order))
+      .then((response) => {
+        setOrder(response.order);
+        setStatuses(response.statuses);
+      })
       .catch(() => 0);
   }, [order]);
+
+  const updateOrder = (data) => {
+    updateCustomerOrder(order.id, { order: data })
+      .then(fetchOrder)
+      .catch(() => 0);
+  };
+
+  const handleStatusUpdate = (event) => {
+    const status = event.target.value;
+    updateOrder({ status });
+  };
 
   const calculateTotalOrderPrice = () => {
     if (!order || !order.groceries_orders) {
@@ -50,12 +78,13 @@ const OrdersShow = ({ orderProps }) => {
               key={groceryOrder.id}
               groceryOrder={groceryOrder}
               onUpdateCallback={fetchOrder}
+              isEditable={order.status === "in_cart"}
             />
           ))
         : "Loading"}
 
       {order.address ? <Address address={order.address} /> : null}
-      <div>{order.status}</div>
+      <Select defaultValue={order.status} options={statusOptions} onChange={handleStatusUpdate} />
       <div>Total price: {calculateTotalOrderPrice()}</div>
     </div>
   );
