@@ -3,10 +3,10 @@ import { createCustomerOrder } from "../../api/customerOrders";
 import { toast } from "react-toastify";
 import OrdersShow from "../Orders/show";
 
-const GroceriesCart = ({ order }) => {
+const GroceriesCart = ({ order, statuses, addresses }) => {
   return (
     <div>
-      <OrdersShow orderProps={order} />
+      <OrdersShow orderProps={order} statusesProps={statuses} addressesProps={addresses} />
     </div>
   );
 };

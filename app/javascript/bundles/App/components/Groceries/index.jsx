@@ -45,7 +45,7 @@ const GroceriesIndex = () => {
 
   const fetchCart = useCallback(() => {
     createCustomerOrder()
-      .then((response) => setCart(response.order))
+      .then((response) => setCart(response))
       .catch(() =>
         toast.error("Something went wrong. Please contact support.")
       );
@@ -93,7 +93,13 @@ const GroceriesIndex = () => {
           />
         );
       })}
-      {isCustomer ? <GroceriesCart order={cart} /> : null}
+      {isCustomer ? (
+        <GroceriesCart
+          order={cart.order}
+          statuses={cart.statuses}
+          addresses={cart.addresses}
+        />
+      ) : null}
     </div>
   );
 };

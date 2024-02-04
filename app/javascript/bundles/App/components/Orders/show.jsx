@@ -8,16 +8,17 @@ import Address from "../Addresses/Address";
 import { useParams } from "react-router-dom";
 import Select from "../Utils/Select";
 
-const OrdersShow = ({ orderProps }) => {
+const OrdersShow = ({ orderProps, statusesProps, addressesProps }) => {
   const { orderId } = useParams();
   const [order, setOrder] = useState(orderProps);
-  const [statuses, setStatuses] = useState([]);
-  const [addresses, setAddresses] = useState([]);
+  const [statuses, setStatuses] = useState(statusesProps || []);
+  const [addresses, setAddresses] = useState(addressesProps || []);
 
   const statusOptions = useMemo(() => {
     let formattedStatuses = statuses.map((status) => ({
       id: status,
       value: status,
+      options: { disabled: status === "in_cart" }
     }));
 
     return formattedStatuses;
@@ -33,11 +34,20 @@ const OrdersShow = ({ orderProps }) => {
     if (orderProps) {
       setOrder(orderProps);
     }
+  }, [orderProps]);
 
+  useEffect(() => {
+    if (statusesProps) setStatuses(statusesProps);
+  }, [statusesProps]);
+  useEffect(() => {
+    if (addressesProps) setAddresses(addressesProps);
+  }, [addressesProps]);
+
+  useEffect(() => {
     if (orderId) {
       fetchOrder();
     }
-  }, [orderProps, orderId]);
+  }, [orderId]);
 
   const fetchOrder = useCallback(() => {
     if (!order && !orderId) {
