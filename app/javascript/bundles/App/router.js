@@ -11,6 +11,8 @@ import AddressesIndex from "./components/Addresses";
 import CustomerLayout from "./components/Customer/Layout";
 import AdminDashboard from "./components/Admin/Dashboard";
 import AdminLayout from "./components/Admin/Layout";
+import OrdersIndex from "./components/Orders";
+import OrdersShow from "./components/Orders/show";
 
 const getRouter = (loggedInUserType) => {
   let filteredRoutes = []
@@ -54,6 +56,14 @@ const authenticatedCustomerRoutes = [
   {
     path: routes.customersAddresses,
     element: <CustomerLayout><AddressesIndex /></CustomerLayout>
+  },
+  {
+    path: routes.customersOrders,
+    element: <CustomerLayout><OrdersIndex /></CustomerLayout>
+  },
+  {
+    path: routes.customersOrder.route,
+    element: <CustomerLayout><OrdersShow /></CustomerLayout>
   }
 ]
 

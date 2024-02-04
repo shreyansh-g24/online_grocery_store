@@ -2,20 +2,28 @@ import React, { useCallback, useEffect, useState } from "react";
 import GroceryOrderItem from "./GroceryOrderItem";
 import { fetchCustomerOrder } from "../../api/customerOrders";
 import Address from "../Addresses/Address";
+import { useParams } from "react-router-dom";
 
 const OrdersShow = ({ orderProps }) => {
+  const { orderId } = useParams();
   const [order, setOrder] = useState(orderProps);
 
   useEffect(() => {
-    setOrder(orderProps);
-  }, [orderProps]);
+    if (orderProps) {
+      setOrder(orderProps);
+    }
+
+    if (orderId) {
+      fetchOrder()
+    }
+  }, [orderProps, orderId]);
 
   const fetchOrder = useCallback(() => {
-    if (!order) {
+    if (!order && !orderId) {
       return;
     }
 
-    fetchCustomerOrder(order.id)
+    fetchCustomerOrder(order ? order.id : orderId)
       .then((response) => setOrder(response.order))
       .catch(() => 0);
   }, [order]);
@@ -25,20 +33,22 @@ const OrdersShow = ({ orderProps }) => {
       return 0;
     }
 
-    return order.groceries_orders.reduce((acc, grocery_order) => {
-      return (
-        acc + grocery_order.quantity * grocery_order.grocery.price_per_unit
-      );
+    return order.groceries_orders.reduce((acc, groceryOrder) => {
+      return acc + groceryOrder.quantity * groceryOrder.grocery.price_per_unit;
     }, 0);
   };
 
+  if (!order) {
+    return "Loading";
+  }
+
   return (
     <div>
-      {order && order.groceries_orders
-        ? order.groceries_orders.map((grocery_order) => (
+      {order.groceries_orders
+        ? order.groceries_orders.map((groceryOrder) => (
             <GroceryOrderItem
-              key={grocery_order.id}
-              grocery_order={grocery_order}
+              key={groceryOrder.id}
+              groceryOrder={groceryOrder}
               onUpdateCallback={fetchOrder}
             />
           ))

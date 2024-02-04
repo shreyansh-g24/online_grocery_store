@@ -11,7 +11,6 @@ class Api::V1::Customers::GroceriesOrdersController < Api::V1::Customers::BaseCo
   end
 
   def update
-    # handle quantity less than zero
     groceries_order = @order.groceries_orders.find_by(id: params[:id])
     if groceries_order.update(groceries_order_update_params)
       respond_with_json({ message: "Successfully updated grocery quantity", groceries_order: groceries_order }, :ok)

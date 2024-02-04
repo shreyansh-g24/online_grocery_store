@@ -5,6 +5,11 @@ const routes = {
 
   customersDashboard: "/",
   customersAddresses: "/addresses",
+  customersOrders: "/orders",
+  customersOrder: {
+    routeHelper: (id) => `/orders/${id}`,
+    route: "/orders/:orderId"
+  },
 
   adminDashboard: "/",
 }
