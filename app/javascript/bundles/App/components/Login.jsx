@@ -21,23 +21,29 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-red-500">
-      <div>
-        <h1>Login</h1>
-        <form ref={formRef}>
-          <label>
-            Email: <input name="email" type="text" />
+    <div className="h-screen w-screen flex justify-center items-center">
+      <div className="p-4 border-2 rounded-xl border-black">
+        <h1 className="header text-center">Login</h1>
+        <form ref={formRef} className="flex items-center justify-center flex-col mb-4">
+          <label className="mb-2">
+            Email: <input className="text-input" name="email" type="text" />
           </label>
-          <label>
-            Password: <input name="password" type="text" />
+          <label className="mb-2">
+            Password: <input className="text-input" name="password" type="text" />
           </label>
-          <button type="button" onClick={handleLogin}>
+          <button className="btn-primary" type="button" onClick={handleLogin}>
             Login
           </button>
         </form>
 
-        <Link to={routes.signup}>Signup</Link>
-        <Link to={routes.adminLogin}>Login as an Admin</Link>
+        <div className="flex flex-col items-center justify-center">
+          <Link className="link" to={routes.signup}>
+            Signup
+          </Link>
+          <Link className="link" to={routes.adminLogin}>
+            Login as an Admin
+          </Link>
+        </div>
       </div>
     </div>
   );

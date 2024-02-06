@@ -6,8 +6,8 @@ import { AuthContext } from "../hooks/useAuth";
 import { USER_TYPES } from "../constants";
 
 const AdminLogin = () => {
-  const context = useContext(AuthContext)
-  const formRef = useRef()
+  const context = useContext(AuthContext);
+  const formRef = useRef();
 
   const handleLogin = () => {
     const formData = new FormData(formRef.current);
@@ -17,26 +17,36 @@ const AdminLogin = () => {
         const token = response.headers.get("Authorization");
         context.login(USER_TYPES.admin, token);
       })
-      .catch(() => undefined)
-  }
+      .catch(() => undefined);
+  };
 
   return (
-    <div>
-      <h1>Admin Login</h1>
-      <form ref={formRef}>
-        <label>
-          Email: <input name="email" type="text" />
-        </label>
-        <label>
-          Password: <input name="password" type="text" />
-        </label>
-        <button type="button" onClick={handleLogin}>Login</button>
-      </form>
+    <div className="h-screen w-screen flex justify-center items-center">
+      <div className="p-4 border-2 rounded-xl border-black">
+        <h1 className="header text-center">Admin Login</h1>
+        <form
+          ref={formRef}
+          className="flex items-center justify-center flex-col mb-4"
+        >
+          <label className="mb-2">
+            Email: <input className="text-input" name="email" type="text" />
+          </label>
+          <label className="mb-2">
+            Password:{" "}
+            <input className="text-input" name="password" type="password" />
+          </label>
+          <button className="btn-primary" type="button" onClick={handleLogin}>
+            Login
+          </button>
+        </form>
 
-      <Link to={routes.root}>Login as a customer</Link>
-      <Link to={routes.signup}>Signup</Link>
+        <div className="flex flex-col items-center justify-center">
+          <Link className="link" to={routes.root}>Login as a customer</Link>
+          <Link className="link" to={routes.signup}>Signup</Link>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default AdminLogin;

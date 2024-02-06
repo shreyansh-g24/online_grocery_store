@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.header {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background-color: rgb(37 99 235);
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.link {
+  color: rgb(37 99 235);
+}
+
+.text-input {
+  border-width: 2px;
+  border-color: black;
+  border-radius: 5px;
+  padding: 5px;
+}
