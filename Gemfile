@@ -64,3 +64,5 @@ gem "shakapacker", "= 7.2.2"
 
 gem "devise", "~> 4.9"
 gem 'jwt'
+
+gem "cssbundling-rails", "~> 1.4"

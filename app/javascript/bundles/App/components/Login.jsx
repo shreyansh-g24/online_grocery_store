@@ -8,7 +8,7 @@ import { USER_TYPES } from "../constants";
 const Login = () => {
   const context = useContext(AuthContext);
   const formRef = useRef();
-  
+
   const handleLogin = () => {
     const formData = new FormData(formRef.current);
     const data = { customer: Object.fromEntries(formData.entries()) };
@@ -17,24 +17,28 @@ const Login = () => {
         const token = response.headers.get("Authorization");
         context.login(USER_TYPES.customer, token);
       })
-      .catch(() => undefined)
-  }
+      .catch(() => undefined);
+  };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form ref={formRef}>
-        <label>
-          Email: <input name="email" type="text" />
-        </label>
-        <label>
-          Password: <input name="password" type="text" />
-        </label>
-        <button type="button" onClick={handleLogin}>Login</button>
-      </form>
+    <div className="h-screen w-screen flex justify-center items-center bg-red-500">
+      <div>
+        <h1>Login</h1>
+        <form ref={formRef}>
+          <label>
+            Email: <input name="email" type="text" />
+          </label>
+          <label>
+            Password: <input name="password" type="text" />
+          </label>
+          <button type="button" onClick={handleLogin}>
+            Login
+          </button>
+        </form>
 
-      <Link to={routes.signup}>Signup</Link>
-      <Link to={routes.adminLogin}>Login as an Admin</Link>
+        <Link to={routes.signup}>Signup</Link>
+        <Link to={routes.adminLogin}>Login as an Admin</Link>
+      </div>
     </div>
   );
 };
