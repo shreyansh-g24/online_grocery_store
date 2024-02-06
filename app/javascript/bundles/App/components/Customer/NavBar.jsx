@@ -13,11 +13,11 @@ const CustomerNavbar = () => {
   };
 
   return (
-    <div>
-      <Link to={routes.customersDashboard}>Groceries</Link>
-      <Link to={routes.customersAddresses}>Addresses</Link>
-      <Link to={routes.customersOrders}>Orders</Link>
-      <button type="button" onClick={handleLogout}>
+    <div className="nav-bar-container">
+      <Link className="link" to={routes.customersDashboard}>Groceries</Link>
+      <Link className="link" to={routes.customersAddresses}>Addresses</Link>
+      <Link className="link" to={routes.customersOrders}>Orders</Link>
+      <button className="btn-danger" type="button" onClick={handleLogout}>
         Logout
       </button>
     </div>

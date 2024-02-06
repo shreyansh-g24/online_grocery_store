@@ -3,7 +3,7 @@ import CustomerNavbar from "./NavBar";
 
 const CustomerLayout = ({ children }) => {
   return (
-    <div>
+    <div className="h-screen w-screen overflow-hidden">
       <CustomerNavbar />
       {children}
     </div>

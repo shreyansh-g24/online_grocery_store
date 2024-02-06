@@ -46,25 +46,31 @@ const AddressesIndex = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleAddAddress}>Add address</button>
-      {showAddressForm ? (
-        <AddressForm
-          onCreate={handleAddressCreate}
-          address={editAddress}
-          onUpdate={handleAddressUpdate}
-        />
-      ) : null}
-      Addresses
-      {addresses.map((address) => {
-        return (
-          <Address
-            key={address.id}
-            address={address}
-            handleEdit={() => handleEditAddress(address)}
+    <div className="w-screen p-4 flex flex-col justify-center items-center">
+      <div className="mb-4">
+        {showAddressForm ? (
+          <AddressForm
+            onCreate={handleAddressCreate}
+            address={editAddress}
+            onUpdate={handleAddressUpdate}
           />
-        );
-      })}
+        ) : (
+          <button className="btn-primary" onClick={handleAddAddress}>
+            Add address
+          </button>
+        )}
+      </div>
+      <div className="w-full grid grid-flow-row grid-cols-3 gap-4">
+        {addresses.map((address) => {
+          return (
+            <Address
+              key={address.id}
+              address={address}
+              handleEdit={() => handleEditAddress(address)}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

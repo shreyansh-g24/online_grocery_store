@@ -29,7 +29,7 @@ const Login = () => {
             Email: <input className="text-input" name="email" type="text" />
           </label>
           <label className="mb-2">
-            Password: <input className="text-input" name="password" type="text" />
+            Password: <input className="text-input" name="password" type="password" />
           </label>
           <button className="btn-primary" type="button" onClick={handleLogin}>
             Login
