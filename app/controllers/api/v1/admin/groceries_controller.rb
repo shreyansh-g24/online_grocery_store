@@ -4,7 +4,7 @@ class Api::V1::Admin::GroceriesController < Api::V1::Admin::BaseController
     if grocery.save
       respond_with_json({ message: "Grocery created successfully", grocery: grocery }, :ok)
     else
-      respond_with_json({ errors: [grocery.errors.full_messages] }, :ok)
+      respond_with_json({ errors: grocery.errors.full_messages }, :ok)
     end
   end
 
