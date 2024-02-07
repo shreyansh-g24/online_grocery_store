@@ -42,7 +42,7 @@ const GroceryOrderItem = ({ groceryOrder, onUpdateCallback, isEditable }) => {
   return (
     <div>
       <div className="font-bold">{groceryOrder.grocery.name}</div>
-      <div className="text-red-500 capitalize">
+      <div className="text-red-500">
         {groceryOrder.grocery.is_out_of_stock ? "Out of stock" : ""}
       </div>
       <div className="flex flex-col items-center justify-center">

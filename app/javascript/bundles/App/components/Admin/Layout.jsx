@@ -3,9 +3,9 @@ import AdminNavbar from "./NavBar";
 
 const AdminLayout = ({ children }) => {
   return (
-    <div>
+    <div className="h-screen w-screen overflow-hidden">
       <AdminNavbar />
-      {children}
+      <div className="content-container">{children}</div>
     </div>
   );
 };

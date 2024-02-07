@@ -8,7 +8,6 @@ import { USER_TYPES } from "./constants";
 import ErrorPage from "./components/ErrorPage";
 import AddressesIndex from "./components/Addresses";
 import CustomerLayout from "./components/Customer/Layout";
-import AdminDashboard from "./components/Admin/Dashboard";
 import AdminLayout from "./components/Admin/Layout";
 import OrdersIndex from "./components/Orders";
 import OrdersShow from "./components/Orders/show";
@@ -71,7 +70,7 @@ const authenticatedCustomerRoutes = [
 const authenticatedAdminRoutes = [
   {
     path: routes.adminDashboard,
-    element: <AdminLayout><AdminDashboard /></AdminLayout>
+    element: <AdminLayout><GroceriesIndex /></AdminLayout>
   },
   {
     path: routes.adminOrders,

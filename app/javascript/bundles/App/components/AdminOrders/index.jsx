@@ -13,8 +13,7 @@ const AdminOrdersIndex = () => {
   }, []);
 
   return (
-    <div>
-      Orders
+    <div className="p-2">
       {orders.map((order, index) => (
         <OrderRow key={order.id} index={index} order={order} />
       ))}

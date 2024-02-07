@@ -109,24 +109,23 @@ const OrdersShow = ({ orderProps, statusesProps, addressesProps }) => {
     }, 0);
   };
 
-  if (!order) {
-    return "Loading";
+  if (!order || !order.groceries_orders.length) {
+    return <div className="p-4 bg-stone-200 w-full h-full">Cart is empty</div>;
   }
 
   return (
     <div className="p-4 bg-stone-200 w-full h-full flex flex-col justify-start items-center">
       {order.groceries_orders
         ? order.groceries_orders.map((groceryOrder) => (
-          <div className="mb-4">
-            <GroceryOrderItem
-              key={groceryOrder.id}
-              groceryOrder={groceryOrder}
-              onUpdateCallback={fetchOrder}
-              isEditable={
-                order.status === "in_cart" &&
-                context.loggedInUserType === USER_TYPES.customer
-              }
-            />
+            <div key={groceryOrder.id} className="mb-4">
+              <GroceryOrderItem
+                groceryOrder={groceryOrder}
+                onUpdateCallback={fetchOrder}
+                isEditable={
+                  order.status === "in_cart" &&
+                  context.loggedInUserType === USER_TYPES.customer
+                }
+              />
             </div>
           ))
         : "Loading"}

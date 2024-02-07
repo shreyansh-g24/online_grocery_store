@@ -13,10 +13,10 @@ const AdminNavbar = () => {
   };
 
   return (
-    <div>
-      <Link to={routes.adminDashboard}>Groceries</Link>
-      <Link to={routes.adminOrders}>Orders</Link>
-      <button type="button" onClick={handleLogout}>
+    <div className="nav-bar-container">
+      <Link className="link" to={routes.adminDashboard}>Groceries</Link>
+      <Link className="link" to={routes.adminOrders}>Orders</Link>
+      <button className="btn-danger" type="button" onClick={handleLogout}>
         Logout
       </button>
     </div>

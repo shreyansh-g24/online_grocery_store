@@ -36,25 +36,26 @@ const GroceryForm = ({ onCreate, onUpdate, grocery }) => {
 
   return (
     <div>
-      <form ref={formRef}>
-        <label>
-          Name
-          <input name="name" type="text" defaultValue={grocery?.name || ""} />
+      <form ref={formRef} className="rounded flex flex-col justify-center items-center p-2 border-2 border-black">
+        <label className="mb-2">
+          Name{" "}
+          <input className="text-input" name="name" type="text" defaultValue={grocery?.name || ""} />
         </label>
-        <label>
-          Price per unit
+        <label className="mb-2">
+          Price per unit{" "}
           <input
+            className="text-input"
             name="price_per_unit"
             type="number"
             defaultValue={grocery?.price_per_unit || 0}
           />
         </label>
-        <label>
-          Unit
-          <input name="unit" type="text" defaultValue={grocery?.unit || ""} />
+        <label className="mb-2">
+          Unit{" "}
+          <input className="text-input" name="unit" type="text" defaultValue={grocery?.unit || ""} />
         </label>
-        <label>
-          Is out of stock
+        <label className="mb-2">
+          Is out of stock{" "}
           <input
             name="is_out_of_stock"
             type="checkbox"
@@ -62,7 +63,7 @@ const GroceryForm = ({ onCreate, onUpdate, grocery }) => {
           />
         </label>
 
-        <button onClick={grocery ? handleUpdate : handleCreate} type="button">
+        <button className="btn-primary" onClick={grocery ? handleUpdate : handleCreate} type="button">
           {grocery ? "Update" : "Create"}
         </button>
       </form>

@@ -18,9 +18,9 @@ const Grocery = ({ grocery, handleEdit, onAddToCart }) => {
   }
 
   return (
-    <div className="p-2">
+    <div className="p-4 border-2 border-black rounded">
       <div>{grocery.name} <span className="italic">@ {getCostLabel()}</span></div>
-      {grocery.is_out_of_stock ? <div className="text-red-500 capitalize">Out of stock</div> : null}
+      {grocery.is_out_of_stock ? <div className="text-red-500 mb-2">Out of stock</div> : null}
       {isCustomer && !grocery.is_out_of_stock ? <button className="btn-primary" onClick={handleAddToCart}>Add to cart</button> : null}
       {isAdmin ? <button className="btn-primary" onClick={handleEdit}>Edit</button> : null}
     </div>

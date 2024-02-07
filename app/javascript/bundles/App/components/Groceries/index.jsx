@@ -77,29 +77,33 @@ const GroceriesIndex = () => {
 
   return (
     <div className="flex items-start justify-between w-full h-full">
-      <div className="h-full">
-        {isAdmin ? (
-          <button className="btn-primary" onClick={handleAddGrocery}>
-            Add grocery
-          </button>
-        ) : null}
-        {showGroceryForm ? (
-          <GroceryForm
-            onCreate={handleGroceryCreate}
-            grocery={editGrocery}
-            onUpdate={handleGroceryUpdate}
-          />
-        ) : null}
-        {groceries.map((grocery) => {
-          return (
-            <Grocery
-              key={grocery.id}
-              grocery={grocery}
-              handleEdit={() => handleEditGrocery(grocery)}
-              onAddToCart={fetchCart}
+      <div className="h-full w-full p-2">
+        <div className="flex flex-col justify-start items-center mb-4">
+          {isAdmin ? (
+            <button className="btn-primary mb-2" onClick={handleAddGrocery}>
+              Add grocery
+            </button>
+          ) : null}
+          {showGroceryForm ? (
+            <GroceryForm
+              onCreate={handleGroceryCreate}
+              grocery={editGrocery}
+              onUpdate={handleGroceryUpdate}
             />
-          );
-        })}
+          ) : null}
+        </div>
+        <div className="w-full grid grid-flow-row grid-cols-3 gap-4">
+          {groceries.map((grocery) => {
+            return (
+              <Grocery
+                key={grocery.id}
+                grocery={grocery}
+                handleEdit={() => handleEditGrocery(grocery)}
+                onAddToCart={fetchCart}
+              />
+            );
+          })}
+        </div>
       </div>
       {isCustomer ? (
         <GroceriesCart
