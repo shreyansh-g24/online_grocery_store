@@ -12,7 +12,7 @@ class Api::V1::Customers::OrdersController < Api::V1::Customers::BaseController
   def show
     order = current_customer.orders.find_by(id: params[:id])
     if order.present?
-      respond_with_json({ order: order, statuses: Order::CUSTOMERS_STATUSES, addresses: current_customer.addresses }, :ok)
+      respond_with_json({ order: order, statuses: order.customer_statuses, addresses: current_customer.addresses }, :ok)
     else
       respond_with_json({ errors: ["Order not found"] }, :not_found)
     end
