@@ -92,7 +92,7 @@ const GroceriesIndex = () => {
             />
           ) : null}
         </div>
-        <div className="w-full grid grid-flow-row grid-cols-3 gap-4">
+        <div className="w-full grid grid-flow-row grid-cols-3 gap-4 p-2">
           {groceries.map((grocery) => {
             return (
               <Grocery
