@@ -29,7 +29,7 @@ class AddTables < ActiveRecord::Migration[7.1]
     create_table :groceries, id: :uuid do |t|
       t.string :name, null: false
       t.integer :price_per_unit, default: 0, null: false
-      t.string :unit
+      t.string :unit, default: "unit"
       t.boolean :is_out_of_stock, default: false
 
       t.timestamps

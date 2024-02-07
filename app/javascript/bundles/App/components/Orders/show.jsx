@@ -114,7 +114,7 @@ const OrdersShow = ({ orderProps, statusesProps, addressesProps }) => {
   }
 
   return (
-    <div className="p-4 bg-stone-200 w-full h-full flex flex-col justify-start items-center">
+    <div className="overflow-y-scroll p-4 bg-stone-200 w-full h-full flex flex-col justify-start items-center">
       {order.groceries_orders
         ? order.groceries_orders.map((groceryOrder) => (
             <div key={groceryOrder.id} className="mb-4">

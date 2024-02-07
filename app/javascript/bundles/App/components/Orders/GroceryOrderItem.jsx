@@ -30,12 +30,12 @@ const GroceryOrderItem = ({ groceryOrder, onUpdateCallback, isEditable }) => {
   };
 
   const groceryPerUnitPriceLabel = () => {
-    return `Rs. ${groceryOrder.grocery.price_per_unit} / ${groceryOrder.grocery.unit}`;
+    return `Rs. ${groceryOrder.grocery.price_per_unit} / ${groceryOrder.grocery.unit || "unit"}`;
   };
 
   const getGroceryQuantity = () => {
     const quantity = groceryOrder.quantity;
-    const unit = `${groceryOrder.grocery.unit}${quantity === 1 ? "" : "s"}`;
+    const unit = `${groceryOrder.grocery.unit || "unit"}${quantity === 1 ? "" : "s"}`;
     return `${quantity} ${unit}`;
   };
 

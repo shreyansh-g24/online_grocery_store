@@ -77,7 +77,7 @@ const GroceriesIndex = () => {
 
   return (
     <div className="flex items-start justify-between w-full h-full">
-      <div className="h-full w-full p-2">
+      <div className={`h-full p-2 ${isCustomer ? "" : "w-full"}`}>
         <div className="flex flex-col justify-start items-center mb-4">
           {isAdmin ? (
             <button className="btn-primary mb-2" onClick={handleAddGrocery}>

@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { createCustomerOrder } from "../../api/customerOrders";
-import { toast } from "react-toastify";
+import React from "react";
 import OrdersShow from "../Orders/show";
 
 const GroceriesCart = ({ order, statuses, addresses }) => {
   return (
-    <div className="h-full shadow-lg">
-      <OrdersShow orderProps={order} statusesProps={statuses} addressesProps={addresses} />
+    <div className="cart-container">
+      <div className="cart-container cart-fixed">
+        <OrdersShow
+          orderProps={order}
+          statusesProps={statuses}
+          addressesProps={addresses}
+        />
+      </div>
     </div>
   );
 };

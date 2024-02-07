@@ -69,7 +69,14 @@
 }
 
 .cart-container {
-  min-width: 200px;
+  width: 250px;
+  height: calc(100vh - 45px);
+}
+
+.cart-fixed {
+  position: fixed;
+  top: 45px;
+  right: 0;
 }
 
 .cart-total {
