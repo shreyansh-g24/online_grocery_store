@@ -5,7 +5,7 @@ const CustomerLayout = ({ children }) => {
   return (
     <div className="h-screen w-screen overflow-hidden">
       <CustomerNavbar />
-      {children}
+      <div className="content-container">{children}</div>
     </div>
   );
 };

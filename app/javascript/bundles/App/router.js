@@ -4,7 +4,6 @@ import AdminLogin from "./components/AdminLogin";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import routes from "./routes";
-import CustomerDashboard from "./components/Customer/Dashboard";
 import { USER_TYPES } from "./constants";
 import ErrorPage from "./components/ErrorPage";
 import AddressesIndex from "./components/Addresses";
@@ -14,6 +13,7 @@ import AdminLayout from "./components/Admin/Layout";
 import OrdersIndex from "./components/Orders";
 import OrdersShow from "./components/Orders/show";
 import AdminOrdersIndex from "./components/AdminOrders";
+import GroceriesIndex from "./components/Groceries";
 
 const getRouter = (loggedInUserType) => {
   let filteredRoutes = []
@@ -52,7 +52,7 @@ const unauthenticatedRoutes = [
 const authenticatedCustomerRoutes = [
   {
     path: routes.customersDashboard,
-    element: <CustomerLayout><CustomerDashboard /></CustomerLayout>
+    element: <CustomerLayout><GroceriesIndex /></CustomerLayout>
   },
   {
     path: routes.customersAddresses,

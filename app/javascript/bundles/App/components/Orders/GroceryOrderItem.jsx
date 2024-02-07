@@ -25,26 +25,52 @@ const GroceryOrderItem = ({ groceryOrder, onUpdateCallback, isEditable }) => {
       .catch(() => 0);
   };
 
+  const totalGroceryCost = () => {
+    return groceryOrder.quantity * groceryOrder.grocery.price_per_unit;
+  };
+
+  const groceryPerUnitPriceLabel = () => {
+    return `Rs. ${groceryOrder.grocery.price_per_unit} / ${groceryOrder.grocery.unit}`;
+  };
+
+  const getGroceryQuantity = () => {
+    const quantity = groceryOrder.quantity;
+    const unit = `${groceryOrder.grocery.unit}${quantity === 1 ? "" : "s"}`;
+    return `${quantity} ${unit}`;
+  };
+
   return (
     <div>
-      <div>{groceryOrder.grocery.name}</div>
-      <div>
-        {groceryOrder.grocery.is_out_of_stock ? "Out of stock" : "Available"}
+      <div className="font-bold">{groceryOrder.grocery.name}</div>
+      <div className="text-red-500 capitalize">
+        {groceryOrder.grocery.is_out_of_stock ? "Out of stock" : ""}
       </div>
-      <div>
-        Price: Rs. {groceryOrder.grocery.price_per_unit * groceryOrder.quantity}
-      </div>
-      <div>
-        {isEditable ? <button onClick={decrementQuantity}>-</button> : null}
+      <div className="flex flex-col items-center justify-center">
         <div>
-          {groceryOrder.quantity} {groceryOrder.grocery.unit}
+          Cost: Rs. {totalGroceryCost()}{" "}
+          <span className="italic">@ {groceryPerUnitPriceLabel()}</span>
         </div>
-        {isEditable ? <button onClick={incrementQuantity}>+</button> : null}
-      </div>
+        <div className="flex items-center justify-start mb-2">
+          <div className="mr-2">Quantity:</div>
+          {isEditable ? (
+            <button className="btn-circle mr-2" onClick={decrementQuantity}>
+              -
+            </button>
+          ) : null}
+          <div className="mr-2">{getGroceryQuantity()}</div>
+          {isEditable ? (
+            <button className="btn-circle" onClick={incrementQuantity}>
+              +
+            </button>
+          ) : null}
+        </div>
 
-      {isEditable ? (
-        <button onClick={handleItemRemove}>Remove from cart</button>
-      ) : null}
+        {isEditable ? (
+          <button className="btn-danger" onClick={handleItemRemove}>
+            Remove from cart
+          </button>
+        ) : null}
+      </div>
     </div>
   );
 };

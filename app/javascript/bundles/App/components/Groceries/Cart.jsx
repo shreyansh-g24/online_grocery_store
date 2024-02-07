@@ -5,7 +5,7 @@ import OrdersShow from "../Orders/show";
 
 const GroceriesCart = ({ order, statuses, addresses }) => {
   return (
-    <div>
+    <div className="h-full shadow-lg">
       <OrdersShow orderProps={order} statusesProps={statuses} addressesProps={addresses} />
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 
 const Select = ({ defaultValue, options, onChange }) => {
   return (
-    <select defaultValue={defaultValue} onChange={onChange}>
+    <select className="select" defaultValue={defaultValue} onChange={onChange}>
       {options.map((opt) => {
         return (
           <option key={opt.id} value={opt.id} {...opt.options}>

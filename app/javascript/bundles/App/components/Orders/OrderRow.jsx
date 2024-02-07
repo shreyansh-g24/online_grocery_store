@@ -19,7 +19,9 @@ const OrderRow = ({ order, index }) => {
   }, [context.loggedInUserType]);
 
   return (
-    <Link to={orderShowRoute}>{`Order ${index + 1} - ${order.status}`}</Link>
+    <div className="mb-2">
+      <Link className="link" to={orderShowRoute}>{`Order ${index + 1} - ${order.status}`}</Link>
+    </div>
   );
 };
 

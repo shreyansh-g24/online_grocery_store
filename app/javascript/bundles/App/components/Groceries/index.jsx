@@ -76,26 +76,31 @@ const GroceriesIndex = () => {
   };
 
   return (
-    <div>
-      {isAdmin ? <button onClick={handleAddGrocery}>Add grocery</button> : null}
-      {showGroceryForm ? (
-        <GroceryForm
-          onCreate={handleGroceryCreate}
-          grocery={editGrocery}
-          onUpdate={handleGroceryUpdate}
-        />
-      ) : null}
-      Groceries
-      {groceries.map((grocery) => {
-        return (
-          <Grocery
-            key={grocery.id}
-            grocery={grocery}
-            handleEdit={() => handleEditGrocery(grocery)}
-            onAddToCart={fetchCart}
+    <div className="flex items-start justify-between w-full h-full">
+      <div className="h-full">
+        {isAdmin ? (
+          <button className="btn-primary" onClick={handleAddGrocery}>
+            Add grocery
+          </button>
+        ) : null}
+        {showGroceryForm ? (
+          <GroceryForm
+            onCreate={handleGroceryCreate}
+            grocery={editGrocery}
+            onUpdate={handleGroceryUpdate}
           />
-        );
-      })}
+        ) : null}
+        {groceries.map((grocery) => {
+          return (
+            <Grocery
+              key={grocery.id}
+              grocery={grocery}
+              handleEdit={() => handleEditGrocery(grocery)}
+              onAddToCart={fetchCart}
+            />
+          );
+        })}
+      </div>
       {isCustomer ? (
         <GroceriesCart
           order={cart.order}

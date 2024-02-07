@@ -114,32 +114,49 @@ const OrdersShow = ({ orderProps, statusesProps, addressesProps }) => {
   }
 
   return (
-    <div>
+    <div className="p-4 bg-stone-200 w-full h-full flex flex-col justify-start items-center">
       {order.groceries_orders
         ? order.groceries_orders.map((groceryOrder) => (
+          <div className="mb-4">
             <GroceryOrderItem
               key={groceryOrder.id}
               groceryOrder={groceryOrder}
               onUpdateCallback={fetchOrder}
-              isEditable={order.status === "in_cart" && context.loggedInUserType === USER_TYPES.customer}
+              isEditable={
+                order.status === "in_cart" &&
+                context.loggedInUserType === USER_TYPES.customer
+              }
             />
+            </div>
           ))
         : "Loading"}
 
-      {context.loggedInUserType === USER_TYPES.customer ? (
+      <div className="font-bold mb-6 p-2 cart-total">
+        Total cost: Rs. {calculateTotalOrderPrice()}
+      </div>
+
+      <div>
+        Order status{" "}
         <Select
-          defaultValue={order.address_id || ""}
-          options={addressOptions}
-          onChange={handleAddressUpdate}
+          defaultValue={order.status}
+          options={statusOptions}
+          onChange={handleStatusUpdate}
         />
-      ) : null}
-      {order.address ? <Address address={order.address} /> : null}
-      <Select
-        defaultValue={order.status}
-        options={statusOptions}
-        onChange={handleStatusUpdate}
-      />
-      <div>Total price: {calculateTotalOrderPrice()}</div>
+      </div>
+
+      <div className="my-2">
+        <div className="mb-2 text-center">
+          Shipping address{" "}
+          {context.loggedInUserType === USER_TYPES.customer ? (
+            <Select
+              defaultValue={order.address_id || ""}
+              options={addressOptions}
+              onChange={handleAddressUpdate}
+            />
+          ) : null}
+        </div>
+        {order.address ? <Address address={order.address} /> : null}
+      </div>
     </div>
   );
 };
