@@ -13,15 +13,16 @@ const Grocery = ({ grocery, handleEdit, onAddToCart }) => {
     createGroceriesOrder(data).then(() => onAddToCart()).catch(() => 0);
   }
 
+  const getCostLabel = () => {
+    return `Rs. ${grocery.price_per_unit} / ${grocery.unit || "unit"}`
+  }
+
   return (
-    <div>
-      <div>{grocery.name}</div>
-      <div>
-        Price: Rs. {grocery.price_per_unit} per {grocery.unit || "unit"}
-      </div>
-      {grocery.is_out_of_stock ? <div>Out of stock</div> : null}
-      {isAdmin ? <button onClick={handleEdit}>Edit</button> : null}
-      {isCustomer && !grocery.is_out_of_stock ? <button onClick={handleAddToCart}>Add to cart</button> : null}
+    <div className="p-2">
+      <div>{grocery.name} <span className="italic">@ {getCostLabel()}</span></div>
+      {grocery.is_out_of_stock ? <div className="text-red-500 capitalize">Out of stock</div> : null}
+      {isCustomer && !grocery.is_out_of_stock ? <button className="btn-primary" onClick={handleAddToCart}>Add to cart</button> : null}
+      {isAdmin ? <button className="btn-primary" onClick={handleEdit}>Edit</button> : null}
     </div>
   );
 };
