@@ -84,3 +84,7 @@
   border-bottom-width: 2px;
   border-color: black;
 }
+
+.groceries-container {
+  flex-grow: 1;
+}
