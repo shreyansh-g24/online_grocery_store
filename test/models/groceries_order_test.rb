@@ -2,7 +2,7 @@ require "test_helper"
 
 class GroceriesOrderTest < ActiveSupport::TestCase
   test "valid groceries order" do
-    groceries_order = GroceriesOrder.new(order: Order.new, grocery: Grocery.new)
+    groceries_order = GroceriesOrder.new(order: Order.new, grocery: Grocery.new, quantity: 1)
     assert groceries_order.valid?
   end
 
