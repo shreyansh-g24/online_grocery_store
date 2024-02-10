@@ -1,6 +1,6 @@
 class Api::V1::Admin::OrdersController < Api::V1::Admin::BaseController
   def index
-    respond_with_json({ orders: Order.not_in_cart }, :ok)
+    respond_with_json({ orders: Order.not_in_cart.not_canceled }, :ok)
   end
 
   def show
