@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
   has_many :addresses
   has_many :orders
 
-  validates_presence_of :email, :encrypted_password
+  validates_presence_of :email, :encrypted_password, :name
   validates_uniqueness_of :email
 
   before_create :assign_unique_jti

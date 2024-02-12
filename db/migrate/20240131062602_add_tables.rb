@@ -4,7 +4,7 @@ class AddTables < ActiveRecord::Migration[7.1]
 
     create_table :customers, id: :uuid do |t|
       t.string :email, index: { unique: true }, null: false
-      t.string :name
+      t.string :name, null: false
 
       t.timestamps
     end
