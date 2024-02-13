@@ -2,7 +2,7 @@ require "test_helper"
 
 class CustomerTest < ActiveSupport::TestCase
   test "valid customer" do
-    customer = Customer.new(email: "sam@example.com", encrypted_password: "welcome", password: "123456", jti: "token")
+    customer = Customer.new(email: "sam@example.com", encrypted_password: "welcome", password: "123456", jti: "token", name: "Sam")
     assert customer.valid?
   end
 
@@ -19,7 +19,7 @@ class CustomerTest < ActiveSupport::TestCase
   end
 
   test "jti can't be blank" do
-    customer = Customer.new(email: "sam@example.com", encrypted_password: "welcome", password: "123456")
+    customer = Customer.new(email: "sam@example.com", encrypted_password: "welcome", password: "123456", name: "Sam")
     assert customer.save!
     assert_raises ActiveRecord::NotNullViolation do
       customer.update_column :jti, nil
@@ -27,14 +27,14 @@ class CustomerTest < ActiveSupport::TestCase
   end
 
   test "before create assigns a unique jti to customer" do
-    customer = Customer.new(email: "sam@example.com", encrypted_password: "welcome", password: 123456)
+    customer = Customer.new(email: "sam@example.com", encrypted_password: "welcome", password: 123456, name: "Sam")
     assert_nil customer.jti
     assert customer.save!
     assert_not_nil customer.jti
   end
 
   test "email must be unique" do
-    customer = Customer.new(email: "sam@example.com", encrypted_password: "welcome", password: 123456)
+    customer = Customer.new(email: "sam@example.com", encrypted_password: "welcome", password: 123456, name: "Sam")
     customer.save!
 
     customer2 = Customer.new(email: "sam@example.com")
