@@ -1,6 +1,6 @@
 # README
 
-1. Install the requried version of ruby through rbenv, yarn and node. Install postgresql.
+1. Install the required versions of ruby through rbenv, yarn and node. Install postgresql.
 
 2. Setup the application
 ```bash
