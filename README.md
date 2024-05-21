@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. Install the requried version of ruby through rbenv, yarn and node. Install postgresql.
 
-Things you may want to cover:
+2. Setup the application
+```bash
+yarn install --check-files
+bundle install
+bundle exec rake db:create
+bundle exec rake db:migrate
+```
 
-* Ruby version
+3. Run server.
+```bash
+foreman start -f Procfile.dev
+```
 
-* System dependencies
+4. Visit at localhost:3000.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+5. Run tests.
+```bash
+bundle exec rails test
+```

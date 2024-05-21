@@ -25,4 +25,12 @@ class Order < ApplicationRecord
       CUSTOMERS_STATUSES
     end
   end
+
+  def valid_addresses
+    if status.in?(Order::ADMIN_STATUSES) && address.present?
+      [address]
+    else
+      customer.addresses
+    end
+  end
 end
